@@ -1,0 +1,94 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.3'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'com.avast.gradle.docker-compose' version '0.14.3'
+	id 'jacoco'
+	id 'org.sonarqube' version '3.3'
+	// any other plugins
+}
+
+group = 'com.meli'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger2
+	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
+	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+
+	implementation 'com.amazonaws:aws-java-sdk-dynamodb:1.11.892'
+	implementation group: 'com.github.derjust', name: 'spring-data-dynamodb', version: '5.1.0'
+
+	// https://mvnrepository.com/artifact/commons-codec/commons-codec
+	implementation group: 'commons-codec', name: 'commons-codec', version: '1.9'
+
+	// https://mvnrepository.com/artifact/org.junit.vintage/junit-vintage-engine
+	testImplementation group: 'org.junit.vintage', name: 'junit-vintage-engine', version: '5.8.0-M1'
+
+
+
+}
+
+ext {
+	springDataVersion = 'Neumann-SR5'
+}
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.data:spring-data-releasetrain:${springDataVersion}"
+	}
+}
+
+jar {
+	manifest {
+		attributes 'Main-Class': 'com.meli.melimutants.MeliMutantsApplication'
+	}
+}
+
+jacocoTestReport {
+	reports {
+		xml.enabled true
+	}
+	afterEvaluate {
+		classDirectories.setFrom(files(classDirectories.files.collect {
+			fileTree(dir: it, exclude: [
+					"com/meli/melimutants/model/**",
+					"com/meli/melimutants/model/request/**",
+					"com/meli/melimutants/model/response/**",
+					"src/main/java/com/meli/melimutants/MeliMutantsApplication.java"
+			])
+		}))
+	}
+}
+test.finalizedBy jacocoTestReport
+
+test {
+	useJUnitPlatform()
+}
+
+sonarqube {
+	properties {
+		property 'sonar.host.url', 'http://localhost:9000'
+		property 'sonar.login', 'cd8b5293b202c3bd94e72f7fa04b3b417c0a3710'
+	}
+}
+
+tasks.named('sonarqube').configure {
+	dependsOn test
+}
