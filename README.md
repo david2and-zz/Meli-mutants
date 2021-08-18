@@ -65,7 +65,7 @@ El siguiente diagrama de secuencia muestra el flujo de la aplicacion para los di
 
 ![Screenshot](https://github.com/david2and/Meli-mutants/blob/master/docs/resources/SecuenceDiagram.png?raw=true)
 
-En el siguiente diagrama se puede ver el resultado de prueba de carga en el tiempo, con 10.000 peticiones:
+En el siguiente diagrama se puede ver el resultado de prueba de carga en el tiempo, con 10.000 peticiones (Se tiene en cuenta que es bajo recursos de capa gratuita):
 
 ![Screenshot](https://github.com/david2and/Meli-mutants/blob/master/docs/resources/ReportOverTime.PNG?raw=true)
 
