@@ -3,6 +3,22 @@
 
 # Meli-mutants
 
+## Uso de la Aplicacion
+
+### Montaje Local
+
+En el proyecto se encuentra un archivo docker-compose el cual puede levantar dos contenedores, tanto de DynamoDB como de SonarCube para analisis de codigo por medio del siguiente comando:
+```java
+	docker-compose up
+```
+
+### Uso del api
+
+Se pueden ver los request y response del api y de los diferentes endpoints a traves del swagger del proyecto en la siguiente ruta:
+
+http://melimutants-env.eba-mqxjjbba.us-east-2.elasticbeanstalk.com/swagger-ui.html#/
+
+
 ## Arquitectura de Software
 
 El enfoque que se uso para el desarrollo de la prueba es una arquitectura de microservicios desplegada sobre la nube de AWS, se uso lenguaje de programacion Java bajo el framework Spring Boot, en el siguiente diagrama se muestra explicacion basica de la arquitectura del microservicio:
@@ -42,6 +58,29 @@ Se usa una base de datos no relacional DynamoDB para cubrir con las peticiones d
 ### Vista de Procesos
 
 El siguiente diagrama de secuencia muestra el flujo de la aplicacion para los distintos procesos:
+
+![Screenshot](https://github.com/david2and/Meli-mutants/blob/master/docs/resources/SecuenceDiagram.png?raw=true)
+
+En el siguiente diagrama se puede ver el resultado de prueba de carga en el tiempo, con 10.000 peticiones:
+
+![Screenshot](https://github.com/david2and/Meli-mutants/blob/master/docs/resources/ReportOverTime.PNG?raw=true)
+
+### Vista Fisica
+
+Para el despliegue de la aplicacion, por temas de tiempo se realiza por medio de AWS Elastic Beanstalk.
+
+![Screenshot](https://github.com/david2and/Meli-mutants/blob/master/docs/resources/elastic-beanstalk.jpg?raw=true)
+
+Para el cual, se podria alternativamente se podria realizar por creacion de infraestructura por Terraform, con lo que se podria agregar a la arquitectura un cluster de Kubernetes, con un patron de microservicios ServiceMesh junto con un patron SideCar, adicional a esto se podria agregar un Api-Gateway para mejorar la gestion de las solicitudes y en algun posible caso de requerimiento a nivel global se podria extender a una capa de CloudFront.
+
+## Pruebas Unitarias y Cobertura - Code Smells
+Se realiza la medicion de la cobertura y validacion de codigo por medio de Jacoco y SonarCubo:
+
+![Screenshot](https://github.com/david2and/Meli-mutants/blob/master/docs/resources/Coverage.PNG?raw=true)
+
+![Screenshot](https://github.com/david2and/Meli-mutants/blob/master/docs/resources/CoveragePorcentage.PNG?raw=true)
+
+
 
 
 
