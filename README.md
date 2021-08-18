@@ -18,6 +18,10 @@ Se pueden ver los request y response del api y de los diferentes endpoints a tra
 
 http://melimutants-env.eba-mqxjjbba.us-east-2.elasticbeanstalk.com/swagger-ui.html#/
 
+Adicional se deja una Coleccion de Postman con los request disponibles en el API:
+
+https://github.com/david2and/Meli-mutants/blob/master/docs/Meli-Mutants.postman_collection.json
+
 
 ## Arquitectura de Software
 
