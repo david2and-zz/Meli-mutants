@@ -22,7 +22,7 @@ public class MeliMutantsController {
 
     @GetMapping(value= "/stats")
     public ResponseEntity<StatsResponse> getStats(){
-        return new ResponseEntity<>(statsService.getStats(), HttpStatus.CREATED);
+        return new ResponseEntity<>(statsService.getStats(), HttpStatus.OK);
     }
 
     @PostMapping(value = "/mutant")
