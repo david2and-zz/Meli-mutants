@@ -27,6 +27,7 @@ Los endpoints son:
 Stats:
 
 http://Melimutants-env.eba-mqxjjbba.us-east-2.elasticbeanstalk.com/stats
+
 ValidateDna:
 
 http://Melimutants-env.eba-mqxjjbba.us-east-2.elasticbeanstalk.com/mutant
