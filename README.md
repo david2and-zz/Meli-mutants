@@ -22,6 +22,12 @@ Adicional se deja una Coleccion de Postman con los request disponibles en el API
 
 https://github.com/david2and/Meli-mutants/blob/master/docs/Meli-Mutants.postman_collection.json
 
+Los endpoints son:
+Stats:
+http://Melimutants-env.eba-mqxjjbba.us-east-2.elasticbeanstalk.com/stats
+ValidateDna:
+http://Melimutants-env.eba-mqxjjbba.us-east-2.elasticbeanstalk.com/mutant
+
 
 ## Arquitectura de Software
 
